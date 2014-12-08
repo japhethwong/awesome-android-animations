@@ -7,5 +7,5 @@ import java.util.ArrayList;
 /**
  * Created by amytang on 12/8/14.
  */
-public class TranslateAAnimation extends BasicAAnimationFactory {
+public class TranslateAAnimationFactory extends BasicAAnimationFactory {
 }
