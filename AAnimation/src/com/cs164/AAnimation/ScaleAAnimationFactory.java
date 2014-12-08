@@ -7,7 +7,8 @@ import java.util.ArrayList;
 /**
  * Created by amytang on 12/8/14.
  */
-public class TranslateAAnimation implements AAnimationFactory  {
+public class ScaleAAnimationFactory implements AAnimationFactory {
+
     @Override
     public AAnimationSet apply(ArrayList<View> objects) {
         return null;

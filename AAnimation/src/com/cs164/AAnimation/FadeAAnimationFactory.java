@@ -7,8 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by amytang on 12/8/14.
  */
-public class RotateAAnimation implements AAnimationFactory {
-
+public class FadeAAnimationFactory implements AAnimationFactory {
     @Override
     public AAnimationSet apply(ArrayList<View> objects) {
         return null;
