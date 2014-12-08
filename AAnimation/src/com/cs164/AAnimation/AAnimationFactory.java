@@ -10,3 +10,4 @@ import java.util.ArrayList;
 public interface AAnimationFactory {
     public AAnimationSet apply(ArrayList<View> objects);
 }
+
