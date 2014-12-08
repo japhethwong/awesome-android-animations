@@ -15,7 +15,7 @@ public class AAnimationSet {
 
     }
 
-    public AAnimationSet(ArrayList<Animator> animators ) {
+    public AAnimationSet(ArrayList<Animator> animators, ArrayList<AAnimationState> states) {
 
     }
 }
