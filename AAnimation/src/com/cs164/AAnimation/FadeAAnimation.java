@@ -28,7 +28,7 @@ public class FadeAAnimation extends BasicAAnimationFactory {
     @Override
     public AAnimationSet apply(ArrayList<View> objects) {
         ArrayList<Animator> animators = new ArrayList<Animator>();
-        ArrayList<AAnimationState> states = new ArrayList<AAnimationState>()
+        ArrayList<AAnimationState> states = new ArrayList<AAnimationState>();
         for (final View view: objects) {
             AAnimationState state = new AAnimationState(view);
             states.add(state);
@@ -58,6 +58,6 @@ public class FadeAAnimation extends BasicAAnimationFactory {
             });
             animators.add(fade);
         }
-        return new AAnimationSet(animators, states);
+        return new ParallelAAnimationSet(animators, states);
     }
 }
