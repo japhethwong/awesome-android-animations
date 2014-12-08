@@ -9,22 +9,21 @@ import java.util.ArrayList;
 /**
  * Created by amytang on 12/8/14.
  */
-public class FadeAAnimation extends BasicAAnimationFactory {
+public class FadeAAnimationFactory extends BasicAAnimationFactory {
     float startAlpha, endAlpha;
     int duration;
     int wait;
 
-    public FadeAAnimation(float startAlpha, float endAlpha, int duration, int wait) {
+    public FadeAAnimationFactory(float startAlpha, float endAlpha, int duration, int wait) {
         this.startAlpha = startAlpha;
         this.endAlpha = endAlpha;
         this.duration = duration;
         this.wait = wait;
     }
 
-    public FadeAAnimation(float startAlpha, float endAlpha) {
+    public FadeAAnimationFactory(float startAlpha, float endAlpha) {
         this(startAlpha, endAlpha, 200, 0);
     }
-
     @Override
     public AAnimationSet apply(ArrayList<View> objects) {
         ArrayList<Animator> animators = new ArrayList<Animator>();
