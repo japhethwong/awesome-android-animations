@@ -7,10 +7,5 @@ import java.util.ArrayList;
 /**
  * Created by amytang on 12/8/14.
  */
-public class ScaleAAnimationFactory implements AAnimationFactory {
-
-    @Override
-    public AAnimationSet apply(ArrayList<View> objects) {
-        return null;
-    }
+public class ScaleAAnimationFactory extends BasicAAnimationFactory {
 }

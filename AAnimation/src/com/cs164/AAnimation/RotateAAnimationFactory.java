@@ -7,10 +7,5 @@ import java.util.ArrayList;
 /**
  * Created by amytang on 12/8/14.
  */
-public class RotateAAnimationFactory implements AAnimationFactory {
-
-    @Override
-    public AAnimationSet apply(ArrayList<View> objects) {
-        return null;
-    }
+public class RotateAAnimationFactory extends BasicAAnimationFactory {
 }

@@ -1,5 +1,6 @@
 package com.cs164.AAnimation;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.view.View;
 
@@ -14,7 +15,7 @@ public class AAnimationSet {
 
     }
 
-    public AAnimationSet(ArrayList<AAnimationFactory> verbs, ArrayList<View> objects) {
+    public AAnimationSet(ArrayList<Animator> animators, ArrayList<AAnimationState> states) {
 
     }
 }
