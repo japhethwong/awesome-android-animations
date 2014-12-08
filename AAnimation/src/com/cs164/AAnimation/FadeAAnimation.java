@@ -33,13 +33,16 @@ public class FadeAAnimation extends BasicAAnimationFactory {
             fade.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
-                    if (Math.abs(startAlpha - 0.001f) <= 0) {
+                    if (Math.abs(startAlpha - 0.001f) <= 0 && endAlpha >= 0) {
                         view.setVisibility(View.VISIBLE);
                     }
                 }
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
+                    if (Math.abs(endAlpha - 0.001f) <= 0) {
+                        view.setVisibility(View.INVISIBLE);
+                    }
                 }
 
                 @Override
