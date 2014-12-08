@@ -15,8 +15,6 @@ import java.util.ArrayList;
 public class TranslateAAnimationFactory extends BasicAAnimationFactory {
     Float startX, startY;
     float endX, endY;
-    int duration;
-    int wait;
 
     public TranslateAAnimationFactory(Float startX, Float startY, float endX, float endY, int duration, int wait) {
         this.startX = startX;
