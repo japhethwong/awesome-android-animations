@@ -9,13 +9,15 @@ import java.util.ArrayList;
 /**
  * Created by amytang on 12/8/14.
  */
-public class AAnimationSet {
+public interface AAnimationSet {
 
-    public AAnimationSet() {
+    /**
+     * run() runs the sequence of animations.
+     */
+    public void run();
 
-    }
-
-    public AAnimationSet(ArrayList<Animator> animators, ArrayList<AAnimationState> states) {
-
-    }
+    /**
+     * cancel() cancels the sequences of animations.
+     */
+    public void cancel();
 }
