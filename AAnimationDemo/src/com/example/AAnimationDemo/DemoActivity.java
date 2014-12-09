@@ -118,7 +118,8 @@ public class DemoActivity extends Activity {
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME*2,100);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
+        FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1, 0, TIME, 0);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
         ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 0);
@@ -130,8 +131,9 @@ public class DemoActivity extends Activity {
         LinearAAnimationSetFactory linAnim12 = new LinearAAnimationSetFactory(translateRotate);
 
         List<AAnimationFactory> fadeScale = new ArrayList<AAnimationFactory>();
-        fadeScale.add(fade);
+        fadeScale.add(fadeIn);
         fadeScale.add(scale);
+        fadeScale.add(fadeOut);
 
         LinearAAnimationSetFactory linAnim3 = new LinearAAnimationSetFactory(fadeScale);
 
