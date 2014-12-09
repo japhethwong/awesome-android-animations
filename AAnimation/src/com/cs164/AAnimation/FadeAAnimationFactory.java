@@ -55,6 +55,6 @@ public class FadeAAnimationFactory extends BasicAAnimationFactory {
             });
             animators.add(fade);
         }
-        return new ParallelAAnimationSet(animators, states);
+        return new AAnimationSet(animators, states);
     }
 }
