@@ -21,22 +21,26 @@ public class LinearAAnimationSetFactory extends AAnimationSetFactory {
         List<Animator> animators = new ArrayList<Animator>();
         List<AAnimationState> states = new ArrayList<AAnimationState>();
 
+        // Build the list of states needed to construct an AAnimationSet.
         for (final View v : objects) {
             states.add(new AAnimationState(v));
         }
 
+        // Create an AnimatorSet which sequentially plays each of the animations in factory.
         for (final AAnimationFactory animation : animations) {
             AAnimationSet animationSet = animation.apply(objects);
             AnimatorSet set = new AnimatorSet();
             List<Animator> currentAnimators = new ArrayList<Animator>();
+
             for (Animator a: animationSet.getAnimators()) {
                 currentAnimators.add(a);
             }
+
             set.playTogether(currentAnimators);
             animators.add(set);
         }
-        godzillaSet.playSequentially(animators);
 
+        godzillaSet.playSequentially(animators);
         List<Animator> toReturn = new ArrayList<Animator>();
         toReturn.add(godzillaSet);
         return new AAnimationSet(toReturn, states);
