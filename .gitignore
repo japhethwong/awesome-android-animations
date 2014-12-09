@@ -2,3 +2,8 @@ AAnimation/local.properties
 .idea
 AAnimation/.idea
 AAnimation/gen
+*.iml
+*.iws
+.DS_Store
+*.class
+*.apk
