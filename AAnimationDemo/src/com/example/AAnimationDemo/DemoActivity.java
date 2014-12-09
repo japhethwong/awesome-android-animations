@@ -34,25 +34,44 @@ public class DemoActivity extends Activity {
     public void onClick(View v) {
         Log.d("HEY", "got clicked "+count);
         count++;
-        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1);
+
+//        runBasic();
+        runWithFactory();
+    }
+
+    private void runBasic() {
         ArrayList<View> squares = new ArrayList<View>();
         squares.add(square1);
         squares.add(square2);
         squares.add(square3);
-//        AAnimationSet fadeAnimations = fade.apply(squares);
-//        fadeAnimations.run();
+
+        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1);
+        AAnimationSet fadeAnimations = fade.apply(squares);
+        fadeAnimations.run();
 
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 50);
-//        AAnimationSet translateAnimations = translate.apply(squares);
-//        translateAnimations.run();
+        AAnimationSet translateAnimations = translate.apply(squares);
+        translateAnimations.run();
 
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700);
-//        AAnimationSet rotateAnimations = rotate.apply(squares);
-//        rotateAnimations.run();
+        AAnimationSet rotateAnimations = rotate.apply(squares);
+        rotateAnimations.run();
 
         ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f);
-//        AAnimationSet scaleAnimations = scale.apply(squares);
-//        scaleAnimations.run();
+        AAnimationSet scaleAnimations = scale.apply(squares);
+        scaleAnimations.run();
+    }
+
+    private void runWithFactory() {
+        ArrayList<View> squares = new ArrayList<View>();
+        squares.add(square1);
+        squares.add(square2);
+        squares.add(square3);
+
+        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 50);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f);
 
         List<AAnimationFactory> animations = new ArrayList<AAnimationFactory>();
         animations.add(fade);
