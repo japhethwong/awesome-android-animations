@@ -33,6 +33,7 @@ public class FadeAAnimationFactory extends BasicAAnimationFactory {
             states.add(state);
             ObjectAnimator fade = ObjectAnimator.ofFloat(view, "alpha", startAlpha, endAlpha);
             fade.setDuration(duration);
+            fade.setStartDelay(wait);
             fade.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {

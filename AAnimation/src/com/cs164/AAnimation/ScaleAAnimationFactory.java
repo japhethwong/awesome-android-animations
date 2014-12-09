@@ -43,6 +43,7 @@ public class ScaleAAnimationFactory extends BasicAAnimationFactory {
                 }
             });
             scaleAnimation.setDuration(duration);
+            scaleAnimation.setStartDelay(wait);
             animators.add(scaleAnimation);
         }
         return new AAnimationSet(animators, states);
