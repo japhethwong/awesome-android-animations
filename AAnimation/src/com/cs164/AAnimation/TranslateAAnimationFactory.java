@@ -81,6 +81,6 @@ public class TranslateAAnimationFactory extends BasicAAnimationFactory {
             translateXY.playTogether(translateX, translateY);
             animators.add(translateXY);
         }
-        return new ParallelAAnimationSet(animators, states);
+        return new AAnimationSet(animators, states);
     }
 }

@@ -43,6 +43,6 @@ public class ScaleAAnimationFactory extends BasicAAnimationFactory {
             });
             animators.add(scaleAnimation);
         }
-        return new ParallelAAnimationSet(animators, states);
+        return new AAnimationSet(animators, states);
     }
 }

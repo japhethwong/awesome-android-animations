@@ -32,6 +32,6 @@ public class RotateAAnimationFactory extends BasicAAnimationFactory {
             ObjectAnimator fade = ObjectAnimator.ofFloat(view, "rotation", 0f, rotation);
             animators.add(fade);
         }
-        return new ParallelAAnimationSet(animators, states);
+        return new AAnimationSet(animators, states);
     }
 }
