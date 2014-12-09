@@ -42,6 +42,7 @@ public class ScaleAAnimationFactory extends BasicAAnimationFactory {
                     view.setScaleY(value);
                 }
             });
+            scaleAnimation.setDuration(duration);
             animators.add(scaleAnimation);
         }
         return new AAnimationSet(animators, states);
