@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import com.cs164.AAnimation.AAnimationSet;
 import com.cs164.AAnimation.FadeAAnimationFactory;
+import com.cs164.AAnimation.RotateAAnimationFactory;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,9 @@ public class DemoActivity extends Activity {
         squares.add(square3);
         AAnimationSet animations = fade.apply(squares);
         animations.run();
+
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(90);
+        rotate.apply(squares).run();
     }
 
 }
