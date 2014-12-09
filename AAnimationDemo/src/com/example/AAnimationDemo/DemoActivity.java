@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DemoActivity extends Activity {
+    private final static int TIME = 500;
     int count = 0;
     View square1, square2, square3;
     Button button;
@@ -36,8 +37,8 @@ public class DemoActivity extends Activity {
         Log.d("HEY", "got clicked "+count);
         count++;
 
-//        runBasic();
-        runWithFactory();
+        runBasic();
+//        runWithFactory();
     }
 
     private void runBasic() {
@@ -46,19 +47,19 @@ public class DemoActivity extends Activity {
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1);
+        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
         AAnimationSet fadeAnimations = fade.apply(squares);
         fadeAnimations.run();
 
-        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 50);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
         AAnimationSet translateAnimations = translate.apply(squares);
         translateAnimations.run();
 
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
         AAnimationSet rotateAnimations = rotate.apply(squares);
         rotateAnimations.run();
 
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
         AAnimationSet scaleAnimations = scale.apply(squares);
         scaleAnimations.run();
     }
@@ -69,10 +70,10 @@ public class DemoActivity extends Activity {
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1);
-        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 50);
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700);
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f);
+        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
 
         List<AAnimationFactory> animations = new ArrayList<AAnimationFactory>();
         animations.add(fade);
