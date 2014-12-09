@@ -16,22 +16,13 @@ import java.util.List;
 public class AAnimationSet {
     private List<Animator> animators;
     private List<AAnimationState> states;
+    private AnimatorSet godzillaSet;
     private boolean isRunning;
 
     public AAnimationSet(List<Animator> animators, List<AAnimationState> states){
         this.animators = animators;
         this.states = states;
-    }
-
-    public List<Animator> getAnimators() {
-        return animators;
-    }
-
-    /**
-     * run() runs the sequence of animations.
-     */
-    public void run() {
-        AnimatorSet godzillaSet = new AnimatorSet();
+        this.godzillaSet = new AnimatorSet();
         godzillaSet.playTogether(animators);
         godzillaSet.addListener(new Animator.AnimatorListener() {
             @Override
@@ -47,7 +38,6 @@ public class AAnimationSet {
             @Override
             public void onAnimationCancel(Animator animation) {
                 isRunning = false;
-                cancel();
             }
 
             @Override
@@ -55,8 +45,17 @@ public class AAnimationSet {
 
             }
         });
-        godzillaSet.start();
+    }
 
+    public List<Animator> getAnimators() {
+        return animators;
+    }
+
+    /**
+     * run() runs the sequence of animations.
+     */
+    public void run() {
+        godzillaSet.start();
     }
 
     public boolean isRunning() {
@@ -68,9 +67,7 @@ public class AAnimationSet {
      */
     public void cancel() {
         // Cancel all existing animations
-        for (Animator animator : animators) {
-            animator.cancel();
-        }
+        godzillaSet.cancel();
 
         AnimatorSet endTransition = new AnimatorSet();
         ArrayList<Animator> animators = new ArrayList<Animator>();

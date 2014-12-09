@@ -40,7 +40,7 @@
             android:text="Start animation ex. 3"
             android:onClick="onClickEx3"
             android:id="@+id/button3"
-            android:layout_above="@+id/button2" android:layout_alignParentEnd="true"/>
+            android:layout_alignParentBottom="true" android:layout_alignStart="@+id/button2"/>
     <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
@@ -48,8 +48,7 @@
             android:text="Start animation ex. 2"
             android:onClick="onClickEx2"
             android:id="@+id/button2"
-            android:layout_above="@+id/button1"
-            android:layout_alignParentEnd="true"/>
+            android:layout_above="@+id/button3" android:layout_alignParentEnd="true"/>
     <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
@@ -58,5 +57,5 @@
             android:text="Start animation ex. 1"
             android:onClick="onClickEx1"
             android:id="@+id/button1"
-            android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"/>
+            android:layout_above="@+id/button2" android:layout_alignStart="@+id/button2"/>
 </RelativeLayout>
