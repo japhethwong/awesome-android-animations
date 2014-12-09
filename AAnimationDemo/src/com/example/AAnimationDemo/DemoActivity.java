@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.cs164.AAnimation.AAnimationSet;
-import com.cs164.AAnimation.FadeAAnimationFactory;
-import com.cs164.AAnimation.RotateAAnimationFactory;
+import com.cs164.AAnimation.*;
 
 import java.util.ArrayList;
 
@@ -41,11 +39,20 @@ public class DemoActivity extends Activity {
         squares.add(square1);
         squares.add(square2);
         squares.add(square3);
-        AAnimationSet animations = fade.apply(squares);
-        animations.run();
+        AAnimationSet fadeAnimations = fade.apply(squares);
+        fadeAnimations.run();
 
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(90);
-        rotate.apply(squares).run();
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 50);
+        AAnimationSet translateAnimations = translate.apply(squares);
+        translateAnimations.run();
+
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700);
+        AAnimationSet rotateAnimations = rotate.apply(squares);
+        rotateAnimations.run();
+
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f);
+        AAnimationSet scaleAnimations = scale.apply(squares);
+        scaleAnimations.run();
     }
 
 }
