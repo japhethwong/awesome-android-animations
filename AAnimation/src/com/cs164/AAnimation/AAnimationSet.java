@@ -11,16 +11,28 @@ import java.util.List;
  * Created by amytang on 12/8/14.
  */
 public class AAnimationSet {
+    List<Animator> animators;
+    List<AAnimationState> states;
+    boolean isParallel;
 
-    public AAnimationSet(List<Animator> animators, List<AAnimationState> states){}
+    public AAnimationSet(List<Animator> animators, List<AAnimationState> states){
+        this.animators = animators;
+        this.states = states;
+    }
 
     /**
      * run() runs the sequence of animations.
      */
-    public void run() {}
+    public void run() {
+        for (final Animator animator : animators) {
+            animator.start();
+        }
+    }
 
     /**
      * cancel() cancels the sequences of animations.
      */
-    public void cancel() {}
+    public void cancel() {
+
+    }
 }
