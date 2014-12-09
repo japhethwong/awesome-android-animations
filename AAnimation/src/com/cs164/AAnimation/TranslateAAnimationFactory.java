@@ -79,7 +79,6 @@ public class TranslateAAnimationFactory extends BasicAAnimationFactory {
             });
             translateX.setDuration(duration);
             translateX.setStartDelay(wait);
-            animators.add(translateX);
             ValueAnimator translateY = ValueAnimator.ofFloat(y1, y2);
             translateY.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

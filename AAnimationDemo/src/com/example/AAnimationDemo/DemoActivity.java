@@ -37,8 +37,8 @@ public class DemoActivity extends Activity {
         Log.d("HEY", "got clicked "+count);
         count++;
 
-        runBasic();
-//        runWithFactory();
+  //      runBasic();
+        runWithFactory();
     }
 
     private void runBasic() {
