@@ -112,8 +112,36 @@ public class DemoActivity extends Activity {
      * @param v is the view which registered the tap
      */
     public void onClickEx2(View v) {
-        // TODO
-        Log.d("Started",  "ex. 2");
+        // TODO: Replace with the actual demo code.
+        ArrayList<View> squares = new ArrayList<View>();
+        squares.add(square1);
+        squares.add(square2);
+        squares.add(square3);
+
+        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME*2,100);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 0);
+
+        List<AAnimationFactory> translateRotate = new ArrayList<AAnimationFactory>();
+        translateRotate.add(translate);
+        translateRotate.add(rotate);
+
+        LinearAAnimationSetFactory linAnim12 = new LinearAAnimationSetFactory(translateRotate);
+
+        List<AAnimationFactory> fadeScale = new ArrayList<AAnimationFactory>();
+        fadeScale.add(fade);
+        fadeScale.add(scale);
+
+        LinearAAnimationSetFactory linAnim3 = new LinearAAnimationSetFactory(fadeScale);
+
+        List<AAnimationFactory> anims = new ArrayList<AAnimationFactory>();
+        anims.add(linAnim12);
+        anims.add(linAnim3);
+
+        ParallelAAnimationSetFactory par = new ParallelAAnimationSetFactory(anims);
+        AAnimationSet animSet = par.apply(squares);
+        animSet.run();
     }
 
     /**
