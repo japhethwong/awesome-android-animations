@@ -14,7 +14,7 @@ public class DemoActivity extends Activity {
     private final static int TIME = 500;
     int count = 0;
     View square1, square2, square3;
-    Button button;
+    Button button1, button2, button3;
     /**
      * Called when the activity is first created.
      */
@@ -25,15 +25,31 @@ public class DemoActivity extends Activity {
         square1 = findViewById(R.id.square1);
         square2 = findViewById(R.id.square2);
         square3 = findViewById(R.id.square3);
-        button = (Button)findViewById(R.id.button);
+        button1 = (Button)findViewById(R.id.button1);
+        button2 = (Button)findViewById(R.id.button2);
+        button3 = (Button)findViewById(R.id.button3);
 
+    }
+
+    /**
+     * changeToStartAnimationButton() is a helper function which toggles the state of our button to start animation.
+     */
+    private void changeToStartAnimationButton(Button b, int example) {
+        b.setText("Start animation ex. "+example);
+    }
+
+    /**
+     * changeToPauseAnimationButton() is a helper function which toggles the state of our button to reset animation.
+     */
+    private void changeToPauseAnimationButton(Button b, int example) {
+        b.setText("Cancel animation ex. "+example);
     }
 
     /**
      * Response handler to react to taps on our button which toggles animations.
      * @param v is the view which registered the tap
      */
-    public void onClick(View v) {
+    public void onClickEx1(View v) {
         Log.d("HEY", "got clicked "+count);
         count++;
 
@@ -62,6 +78,24 @@ public class DemoActivity extends Activity {
         ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
         AAnimationSet scaleAnimations = scale.apply(squares);
         scaleAnimations.run();
+    }
+
+    /**
+     * Response handler to react to taps on our button which toggles animations.
+     * @param v is the view which registered the tap
+     */
+    public void onClickEx2(View v) {
+        // TODO
+        Log.d("Started",  "ex. 2");
+    }
+
+    /**
+     * Response handler to react to taps on our button which toggles animations.
+     * @param v is the view which registered the tap
+     */
+    public void onClickEx3(View v) {
+        // TODO
+        Log.d("Started", "ex. 3");
     }
 
     private void runWithFactory() {
