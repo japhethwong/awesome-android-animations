@@ -155,6 +155,14 @@ public class DemoActivity extends Activity {
         Log.d("Started", "ex. 3");
     }
 
+    public void onClickReset(View v) {
+        Log.d("Reset", "Tapped RESET button.");
+        square1 = findViewById(R.id.square1);
+        square2 = findViewById(R.id.square2);
+        square3 = findViewById(R.id.square3);
+
+    }
+
     private AAnimationSet runWithFactory() {
         ArrayList<View> squares = new ArrayList<View>();
         squares.add(square1);
