@@ -8,6 +8,7 @@ import android.widget.Button;
 import com.cs164.AAnimation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DemoActivity extends Activity {
     int count = 0;
@@ -80,7 +81,7 @@ public class DemoActivity extends Activity {
         animations.add(scale);
 
         LinearAAnimationSetFactory linearAnimation = new LinearAAnimationSetFactory(animations);
-        AAnimationSet set = linearAnimation.apply(sqaures);
+        AAnimationSet set = linearAnimation.apply(squares);
         set.run();
     }
 
