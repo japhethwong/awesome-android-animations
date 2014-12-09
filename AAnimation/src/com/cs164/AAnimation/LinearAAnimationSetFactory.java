@@ -1,15 +1,15 @@
 package com.cs164.AAnimation;
 
-import android.animation.Animator;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Japheth on 12/8/2014.
+ * Created by Japheth on 12/9/2014.
  */
-public class ParallelAAnimationSetFactory extends AAnimationSetFactory {
-    public ParallelAAnimationSetFactory(List<AAnimationFactory> animations) {
+public class LinearAAnimationSetFactory extends AAnimationSetFactory {
+    public LinearAAnimationSetFactory(List<AAnimationFactory> animations) {
         super(animations);
     }
 
