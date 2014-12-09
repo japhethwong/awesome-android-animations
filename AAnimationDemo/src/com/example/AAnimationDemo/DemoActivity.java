@@ -41,7 +41,7 @@ public class DemoActivity extends Activity {
     /**
      * changeToPauseAnimationButton() is a helper function which toggles the state of our button to reset animation.
      */
-    private void changeToPauseAnimationButton(Button b, int example) {
+    private void changeToCancelAnimationButton(Button b, int example) {
         b.setText("Cancel animation ex. "+example);
     }
 
