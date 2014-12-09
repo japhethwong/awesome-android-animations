@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by amytang on 12/8/14.
@@ -23,7 +24,7 @@ public class FadeAAnimationFactory extends BasicAAnimationFactory {
         this(startAlpha, endAlpha, 200, 0);
     }
     @Override
-    public AAnimationSet apply(ArrayList<View> objects) {
+    public AAnimationSet apply(List<View> objects) {
         ArrayList<Animator> animators = new ArrayList<Animator>();
         ArrayList<AAnimationState> states = new ArrayList<AAnimationState>();
         for (final View view: objects) {

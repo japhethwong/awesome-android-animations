@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This scales proportionally in both x and y.
@@ -24,7 +25,7 @@ public class ScaleAAnimationFactory extends BasicAAnimationFactory {
         this(scale, 200, 0);
     }
     @Override
-    public AAnimationSet apply(ArrayList<View> objects) {
+    public AAnimationSet apply(List<View> objects) {
         ArrayList<Animator> animators = new ArrayList<Animator>();
         ArrayList<AAnimationState> states = new ArrayList<AAnimationState>();
         for (final View view: objects) {
