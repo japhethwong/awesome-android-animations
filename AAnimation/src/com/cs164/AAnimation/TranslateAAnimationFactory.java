@@ -67,6 +67,7 @@ public class TranslateAAnimationFactory extends BasicAAnimationFactory {
                     view.setLayoutParams(mlp);
                 }
             });
+            translateX.setDuration(duration);
             animators.add(translateX);
             ValueAnimator translateY = ValueAnimator.ofFloat(y1, y2);
             translateY.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -79,6 +80,7 @@ public class TranslateAAnimationFactory extends BasicAAnimationFactory {
                     view.setLayoutParams(mlp);
                 }
             });
+            translateY.setDuration(duration);
             translateXY.playTogether(translateX, translateY);
             animators.add(translateXY);
         }
