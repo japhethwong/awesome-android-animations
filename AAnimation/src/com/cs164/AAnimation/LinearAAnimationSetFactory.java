@@ -2,6 +2,7 @@ package com.cs164.AAnimation;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class LinearAAnimationSetFactory extends AAnimationSetFactory {
         // Create an AnimatorSet which sequentially plays each of the animations in factory.
         for (final AAnimationFactory animation : animations) {
             AAnimationSet animationSet = animation.apply(objects);
+            if (animation instanceof TranslateAAnimationFactory) {
+                Log.d("HEY", "animationSet animators: " + animationSet.getAnimators());
+            }
             AnimatorSet set = new AnimatorSet();
             List<Animator> currentAnimators = new ArrayList<Animator>();
 

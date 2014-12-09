@@ -14,8 +14,9 @@ import java.util.List;
  * Created by amytang on 12/8/14.
  */
 public class AAnimationSet {
-    List<Animator> animators;
-    List<AAnimationState> states;
+    private List<Animator> animators;
+    private List<AAnimationState> states;
+    private boolean isRunning;
 
     public AAnimationSet(List<Animator> animators, List<AAnimationState> states){
         this.animators = animators;
@@ -30,11 +31,37 @@ public class AAnimationSet {
      * run() runs the sequence of animations.
      */
     public void run() {
-        for (Animator animator : animators) {
-            animator.start();
-        }
+        AnimatorSet godzillaSet = new AnimatorSet();
+        godzillaSet.playTogether(animators);
+        godzillaSet.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                isRunning = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                isRunning = false;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                isRunning = false;
+                cancel();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        godzillaSet.start();
+
     }
 
+    public boolean isRunning() {
+        return isRunning;
+    }
     /**
      * cancel() cancels the sequences of animations.
      * TODO: As of now, there could be some wonkiness with threads/timing.
