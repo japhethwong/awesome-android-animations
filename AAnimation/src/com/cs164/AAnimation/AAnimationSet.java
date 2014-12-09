@@ -89,6 +89,10 @@ public class AAnimationSet {
         return states;
     }
 
+    public void addListener(Animator.AnimatorListener animatorListener) {
+        godzillaSet.addListener(animatorListener);
+    }
+
     /**
      * run() runs the sequence of animations.
      */
