@@ -39,20 +39,30 @@ public class DemoActivity extends Activity {
         squares.add(square1);
         squares.add(square2);
         squares.add(square3);
-        AAnimationSet fadeAnimations = fade.apply(squares);
-        fadeAnimations.run();
+//        AAnimationSet fadeAnimations = fade.apply(squares);
+//        fadeAnimations.run();
 
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 50);
-        AAnimationSet translateAnimations = translate.apply(squares);
-        translateAnimations.run();
+//        AAnimationSet translateAnimations = translate.apply(squares);
+//        translateAnimations.run();
 
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700);
-        AAnimationSet rotateAnimations = rotate.apply(squares);
-        rotateAnimations.run();
+//        AAnimationSet rotateAnimations = rotate.apply(squares);
+//        rotateAnimations.run();
 
         ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f);
-        AAnimationSet scaleAnimations = scale.apply(squares);
-        scaleAnimations.run();
+//        AAnimationSet scaleAnimations = scale.apply(squares);
+//        scaleAnimations.run();
+
+        List<AAnimationFactory> animations = new ArrayList<AAnimationFactory>();
+        animations.add(fade);
+        animations.add(translate);
+        animations.add(rotate);
+        animations.add(scale);
+
+        LinearAAnimationSetFactory linearAnimation = new LinearAAnimationSetFactory(animations);
+        AAnimationSet set = linearAnimation.apply(sqaures);
+        set.run();
     }
 
 }
