@@ -126,9 +126,7 @@ public class AAnimationSet {
                     public void onAnimationUpdate(ValueAnimator animation) {
                         // As the square animates, make sure the object's values are also updated.
                         float value = (Float) animation.getAnimatedValue();
-                        ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-                        mlp.leftMargin = (int) value;
-                        view.setLayoutParams(mlp);
+                        view.setX(value);
                     }
                 });
                 animators.add(translateX);
@@ -142,9 +140,7 @@ public class AAnimationSet {
                     public void onAnimationUpdate(ValueAnimator animation) {
                         // As the square animates, make sure the object's values are also updated.
                         float value = (Float) animation.getAnimatedValue();
-                        ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-                        mlp.topMargin = (int) value;
-                        view.setLayoutParams(mlp);
+                        view.setY(value);
                     }
                 });
                 animators.add(translateY);
@@ -198,10 +194,9 @@ public class AAnimationSet {
                 });
                 animators.add(scaleAnimation);
             }
-            endTransition.playTogether(animators);
-            endTransition.start();
         }
 
+        endTransition.playTogether(animators);
         endTransition.start();
 
     }
