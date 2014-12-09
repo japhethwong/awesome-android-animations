@@ -11,8 +11,6 @@ import java.util.ArrayList;
  */
 public class FadeAAnimationFactory extends BasicAAnimationFactory {
     float startAlpha, endAlpha;
-    int duration;
-    int wait;
 
     public FadeAAnimationFactory(float startAlpha, float endAlpha, int duration, int wait) {
         this.startAlpha = startAlpha;
