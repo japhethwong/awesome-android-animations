@@ -1,5 +1,6 @@
 package com.example.AAnimationDemo;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ public class DemoActivity extends Activity {
     int count = 0;
     View square1, square2, square3;
     Button button1, button2, button3;
+    AAnimationSet set1, set2, set3;
     /**
      * Called when the activity is first created.
      */
@@ -39,7 +41,7 @@ public class DemoActivity extends Activity {
     }
 
     /**
-     * changeToPauseAnimationButton() is a helper function which toggles the state of our button to reset animation.
+     * changeToCancelAnimationButton() is a helper function which toggles the state of our button to reset animation.
      */
     private void changeToCancelAnimationButton(Button b, int example) {
         b.setText("Cancel animation ex. "+example);
@@ -52,9 +54,34 @@ public class DemoActivity extends Activity {
     public void onClickEx1(View v) {
         Log.d("HEY", "got clicked "+count);
         count++;
+        if(set1 != null && set1.isRunning()) {
+            set1.cancel();
+        } else {
+            //      runBasic();
+            set1 = runWithFactory();
+            set1.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    changeToCancelAnimationButton(button1, 1);
+                }
 
-  //      runBasic();
-        runWithFactory();
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    changeToStartAnimationButton(button1, 1);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    changeToStartAnimationButton(button1, 1);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            });
+            set1.run();
+        }
     }
 
     private void runBasic() {
@@ -98,7 +125,7 @@ public class DemoActivity extends Activity {
         Log.d("Started", "ex. 3");
     }
 
-    private void runWithFactory() {
+    private AAnimationSet runWithFactory() {
         ArrayList<View> squares = new ArrayList<View>();
         squares.add(square1);
         squares.add(square2);
@@ -117,7 +144,8 @@ public class DemoActivity extends Activity {
 
         LinearAAnimationSetFactory linearAnimation = new LinearAAnimationSetFactory(animations);
         AAnimationSet set = linearAnimation.apply(squares);
-        set.run();
+        return set;
+//        set.run();
     }
 
 }
