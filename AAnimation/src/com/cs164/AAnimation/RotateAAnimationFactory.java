@@ -29,8 +29,8 @@ public class RotateAAnimationFactory extends BasicAAnimationFactory {
             AAnimationState state = new AAnimationState(view);
             states.add(state);
 
-            ObjectAnimator fade = ObjectAnimator.ofFloat(view, "rotation", 0f, rotation);
-            animators.add(fade);
+            ObjectAnimator rotate = ObjectAnimator.ofFloat(view, "rotation", view.getRotation(), rotation);
+            animators.add(rotate);
         }
         return new AAnimationSet(animators, states);
     }

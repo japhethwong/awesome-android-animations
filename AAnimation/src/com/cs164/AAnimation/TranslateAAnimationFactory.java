@@ -68,7 +68,7 @@ public class TranslateAAnimationFactory extends BasicAAnimationFactory {
             });
             animators.add(translateX);
             ValueAnimator translateY = ValueAnimator.ofFloat(y1, y2);
-            translateX.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            translateY.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
                     // As the square animates, make sure the object's values are also updated.
