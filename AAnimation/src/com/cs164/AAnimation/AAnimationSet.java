@@ -55,9 +55,7 @@ public class AAnimationSet {
 
             }
         });
-//        for (Animator animator : animators) {
-//            //animator.start();
-//        }
+        godzillaSet.start();
 
     }
 
