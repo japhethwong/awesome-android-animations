@@ -46,11 +46,11 @@ public class DemoActivity extends Activity {
         AAnimationSet translateAnimations = translate.apply(squares);
         translateAnimations.run();
 
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(85);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700);
         AAnimationSet rotateAnimations = rotate.apply(squares);
         rotateAnimations.run();
 
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.5f);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f);
         AAnimationSet scaleAnimations = scale.apply(squares);
         scaleAnimations.run();
     }

@@ -22,6 +22,10 @@ public class AAnimationSet {
         this.states = states;
     }
 
+    public List<Animator> getAnimators() {
+        return animators;
+    }
+
     /**
      * run() runs the sequence of animations.
      */

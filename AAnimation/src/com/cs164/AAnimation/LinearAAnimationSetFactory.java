@@ -1,5 +1,7 @@
 package com.cs164.AAnimation;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -15,7 +17,28 @@ public class LinearAAnimationSetFactory extends AAnimationSetFactory {
 
     @Override
     public AAnimationSet apply(List<View> objects) {
-        // TODO: Implement me!
-        return super.apply(objects);
+        AnimatorSet godzillaSet = new AnimatorSet();
+        List<Animator> animators = new ArrayList<Animator>();
+        List<AAnimationState> states = new ArrayList<AAnimationState>();
+
+        for (final View v : objects) {
+            states.add(new AAnimationState(v));
+        }
+
+        for (final AAnimationFactory animation : animations) {
+            AAnimationSet animationSet = animation.apply(objects);
+            AnimatorSet set = new AnimatorSet();
+            List<Animator> currentAnimators = new ArrayList<Animator>();
+            for (Animator a: animationSet.getAnimators()) {
+                currentAnimators.add(a);
+            }
+            set.playTogether(currentAnimators);
+            animators.add(set);
+        }
+        godzillaSet.playSequentially(animators);
+
+        List<Animator> toReturn = new ArrayList<Animator>();
+        toReturn.add(godzillaSet);
+        return new AAnimationSet(toReturn, states);
     }
 }

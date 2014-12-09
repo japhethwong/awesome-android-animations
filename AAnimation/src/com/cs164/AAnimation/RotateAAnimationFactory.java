@@ -13,8 +13,14 @@ import java.util.List;
 public class RotateAAnimationFactory extends BasicAAnimationFactory {
     private int rotation;
 
+    /**
+     *
+     * @param rotation is an offset in degrees. Negative for counter-clockwise.
+     * @param duration
+     * @param wait
+     */
     public  RotateAAnimationFactory(int rotation, int duration, int wait) {
-        this.rotation = rotation%360 >= 0 ? rotation%360 : 360 - rotation%360;
+        this.rotation = rotation;
         this.duration = duration;
         this.wait = wait;
     }
@@ -30,7 +36,12 @@ public class RotateAAnimationFactory extends BasicAAnimationFactory {
             AAnimationState state = new AAnimationState(view);
             states.add(state);
 
-            ObjectAnimator rotate = ObjectAnimator.ofFloat(view, "rotation", view.getRotation(), rotation);
+            ObjectAnimator rotate = ObjectAnimator.ofFloat(
+                    view,
+                    "rotation",
+                    view.getRotation(),
+                    view.getRotation()+rotation
+            );
             animators.add(rotate);
         }
         return new AAnimationSet(animators, states);

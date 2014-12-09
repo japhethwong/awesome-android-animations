@@ -1,10 +1,8 @@
 package com.cs164.AAnimation;
 
 import android.animation.Animator;
-import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,7 @@ public class ScaleAAnimationFactory extends BasicAAnimationFactory {
             AAnimationState state = new AAnimationState(view);
             states.add(state);
 
-            ValueAnimator scaleAnimation = ValueAnimator.ofFloat(1f, scale);
+            ValueAnimator scaleAnimation = ValueAnimator.ofFloat(view.getScaleX(), scale*view.getScaleX());
             scaleAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
