@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start animation ex. 3"
-            android:onClick="onClickEx3"
+            android:onClick="onClick"
             android:id="@+id/button3"
             android:layout_above="@+id/resetButton"
             android:layout_alignStart="@+id/button2"/>
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start animation ex. 2"
-            android:onClick="onClickEx2"
+            android:onClick="onClick"
             android:id="@+id/button2"
             android:layout_above="@+id/button3"
             android:layout_alignParentEnd="true"/>
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:text="Start animation ex. 1"
-            android:onClick="onClickEx1"
+            android:onClick="onClick"
             android:id="@+id/button1"
             android:layout_above="@+id/button2"
             android:layout_alignStart="@+id/button2"/>
@@ -69,7 +69,7 @@
             android:layout_height = "wrap_content"
             android:layout_gravity = "bottom"
             android:text="Reset"
-            android:onClick="onClickReset"
+            android:onClick="onClick"
             android:id="@+id/resetButton"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/button2"/>

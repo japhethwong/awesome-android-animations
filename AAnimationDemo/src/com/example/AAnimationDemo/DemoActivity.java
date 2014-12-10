@@ -54,15 +54,33 @@ public class DemoActivity extends Activity {
         b.setText("Cancel animation ex. "+example);
     }
 
+    public void onClick(View v) {
+        saveInitialValues();
+        int viewId = v.getId();
+        switch(viewId) {
+            case R.id.button1:
+                handleButton1();
+                break;
+            case R.id.button2:
+                handleButton2();
+                break;
+            case R.id.button3:
+                handleButton3();
+                break;
+            case R.id.resetButton:
+                handleResetButton();
+                break;
+            default:
+                Log.d("onClick", "Reached default case in onClick, view ID was: " + viewId);
+        }
+    }
+
     /**
      * Response handler to react to taps on our button which toggles animations.
-     * @param v is the view which registered the tap
      */
-    public void onClickEx1(View v) {
-        Log.d("HEY", "got clicked " + count);
-        count++;
-        saveInitialValues();
-        if(set1 != null && set1.isRunning()) {
+    public void handleButton1() {
+        Log.d("handleButton1", "Handling tap on button 1");
+        if (set1 != null && set1.isRunning()) {
             set1.cancel();
         } else {
             //      runBasic();
@@ -92,36 +110,12 @@ public class DemoActivity extends Activity {
         }
     }
 
-    private void runBasic() {
-        ArrayList<View> squares = new ArrayList<View>();
-        squares.add(square1);
-        squares.add(square2);
-        squares.add(square3);
-
-        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
-        AAnimationSet fadeAnimations = fade.apply(squares);
-        fadeAnimations.run();
-
-        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
-        AAnimationSet translateAnimations = translate.apply(squares);
-        translateAnimations.run();
-
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
-        AAnimationSet rotateAnimations = rotate.apply(squares);
-        rotateAnimations.run();
-
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
-        AAnimationSet scaleAnimations = scale.apply(squares);
-        scaleAnimations.run();
-    }
-
     /**
      * Response handler to react to taps on our button which toggles animations.
-     * @param v is the view which registered the tap
      */
-    public void onClickEx2(View v) {
+    public void handleButton2() {
+        Log.d("handleButton2", "Handling tap on button 2");
         // TODO: Replace with the actual demo code.
-        saveInitialValues();
         ArrayList<View> squares = new ArrayList<View>();
         squares.add(square1);
         squares.add(square2);
@@ -157,18 +151,16 @@ public class DemoActivity extends Activity {
 
     /**
      * Response handler to react to taps on our button which toggles animations.
-     * @param v is the view which registered the tap
      */
-    public void onClickEx3(View v) {
+    public void handleButton3() {
+        Log.d("handleButton3", "Handling tap on button 3");
         // TODO
-        Log.d("Started", "ex. 3");
-        saveInitialValues();
     }
 
-    public void onClickReset(View v) {
-        Log.d("Reset", "Tapped RESET button.");
+    public void handleResetButton() {
+        Log.d("handleResetButton", "Tapped RESET button.");
         for (Integer key : viewsMap.keySet()) {
-            Log.d("RESET", "Setting properties for key: " + key);
+            Log.d("handleResetButton", "Setting properties for key: " + key);
             View currentView = findViewById(key);
             AAnimationState state = viewsMap.get(key);
             currentView.setX(state.x);
@@ -216,4 +208,26 @@ public class DemoActivity extends Activity {
 //        set.run();
     }
 
+    private void runBasic() {
+        ArrayList<View> squares = new ArrayList<View>();
+        squares.add(square1);
+        squares.add(square2);
+        squares.add(square3);
+
+        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
+        AAnimationSet fadeAnimations = fade.apply(squares);
+        fadeAnimations.run();
+
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
+        AAnimationSet translateAnimations = translate.apply(squares);
+        translateAnimations.run();
+
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
+        AAnimationSet rotateAnimations = rotate.apply(squares);
+        rotateAnimations.run();
+
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
+        AAnimationSet scaleAnimations = scale.apply(squares);
+        scaleAnimations.run();
+    }
 }
