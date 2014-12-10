@@ -33,7 +33,15 @@
             android:layout_below="@+id/square2"
             />
 
-
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width = "match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start animation demo EASY"
+        android:onClick="onClick"
+        android:id="@+id/easyButton"
+        android:layout_above="@+id/resetButton"
+        android:layout_alignStart="@+id/button2"/>
     <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width = "match_parent"
@@ -41,7 +49,7 @@
             android:text="Start animation ex. 3"
             android:onClick="onClick"
             android:id="@+id/button3"
-            android:layout_above="@+id/resetButton"
+            android:layout_above="@+id/easyButton"
             android:layout_alignStart="@+id/button2"/>
     <Button
             style="?android:attr/buttonStyleSmall"

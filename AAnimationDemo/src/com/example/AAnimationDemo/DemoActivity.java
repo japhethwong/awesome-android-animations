@@ -13,6 +13,7 @@ import java.util.List;
 
 public class DemoActivity extends Activity {
     private final static int TIME = 500;
+    private final static int WAIT = 100;
     int count = 0;
     View square1, square2, square3;
     Button button1, button2, button3;
@@ -40,20 +41,21 @@ public class DemoActivity extends Activity {
     /**
      * changeToStartAnimationButton() is a helper function which toggles the state of our button to start animation.
      */
-    private void changeToStartAnimationButton(Button b, int example) {
-        b.setText("Start animation ex. " + example);
+    private void changeToStartAnimationButton(Button b, String example) {
+        b.setText("Start animation ex. "+example);
     }
 
     /**
      * changeToCancelAnimationButton() is a helper function which toggles the state of our button to reset animation.
      */
-    private void changeToCancelAnimationButton(Button b, int example) {
-        b.setText("Cancel animation ex. " + example);
+
+    private void changeToCancelAnimationButton(Button b, String example) {
+        b.setText("Cancel animation ex. "+example);
     }
 
     public void onClick(final View v) {
         int viewId = v.getId();
-        int exampleNumber = 0;
+        String example = "";
 
         if (viewId == R.id.resetButton) {
             handleResetButton();
@@ -65,38 +67,41 @@ public class DemoActivity extends Activity {
             switch (viewId) {
                 case R.id.button1:
                     animationSet = run1WithFactory();
-                    exampleNumber = 1;
+                    example = ""+1;
                     break;
                 case R.id.button2:
                     animationSet = run2WithFactory();
-                    exampleNumber = 2;
+                    example = ""+2;
                     break;
                 case R.id.button3:
                     animationSet = run3WithFactory();
-                    exampleNumber = 3;    
+                    example = ""+3;
                     break;
+                case R.id.easyButton:
+                    animationSet = runEasyDemo();
+                    example = "EASY";
                 default:
                     Log.d("onClick", "Reached default case in onClick, view ID was: " + viewId);    
             }
 
-            final int example = exampleNumber;
+            final String exampleString = example;
 
             if (animationSet != null) {
                 animationSet.addListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
-                        changeToCancelAnimationButton((Button)v, example);
+                        changeToCancelAnimationButton((Button)v, exampleString);
                     }
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        changeToStartAnimationButton((Button)v, example);
+                        changeToStartAnimationButton((Button)v, exampleString);
                         animationSet = null;
                     }
 
                     @Override
                     public void onAnimationCancel(Animator animation) {
-                        changeToStartAnimationButton((Button)v, example);
+                        changeToStartAnimationButton((Button)v, exampleString);
                         animationSet = null;
                     }
 
@@ -123,10 +128,10 @@ public class DemoActivity extends Activity {
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
-        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.5f, TIME, 100);
+        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,WAIT);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, WAIT);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, WAIT);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.8f, TIME, WAIT);
 
         List<AAnimationFactory> animations = new ArrayList<AAnimationFactory>();
         animations.add(fade);
@@ -146,7 +151,7 @@ public class DemoActivity extends Activity {
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,WAIT);
         FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1, 0, TIME, 0);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
@@ -175,7 +180,7 @@ public class DemoActivity extends Activity {
     }
 
     private AAnimationSet run3WithFactory() {
-        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,WAIT);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
         List<AAnimationFactory> fadeTrans = new ArrayList<AAnimationFactory>();
         fadeTrans.add(fadeIn);
@@ -204,6 +209,27 @@ public class DemoActivity extends Activity {
         LinearAAnimationSet fin = new LinearAAnimationSet(totalAnimSets);
 
         return fin;
+    }
+
+    /**
+     * runEasyDemo() runs the easy demo in our design document.
+     * @return an AAnimationSet which corresponds to this animation
+     */
+    private AAnimationSet runEasyDemo() {
+        List<View> squares = new ArrayList<View>();
+        squares.add(square1);
+
+        // Create the component fade animation factories.
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0f, 1f, TIME*2, 100);
+        FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1f, 0f, TIME*2, 100);
+
+        // Create the list to contain the sequence of animations.
+        List<AAnimationFactory> sequence = new ArrayList<AAnimationFactory>();
+        sequence.add(fadeIn);
+        sequence.add(fadeOut);
+
+        // Compose the animations and apply the sequence to the squares.
+        return new LinearAAnimationSetFactory(sequence).apply(squares);
     }
 
 }
