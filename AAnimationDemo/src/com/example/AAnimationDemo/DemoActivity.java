@@ -48,7 +48,7 @@ public class DemoActivity extends Activity {
      * changeToCancelAnimationButton() is a helper function which toggles the state of our button to reset animation.
      */
     private void changeToCancelAnimationButton(Button b, int example) {
-        b.setText("Cancel animation ex. "+example);
+        b.setText("Cancel animation ex. " + example);
     }
 
     public void onClick(final View v) {
@@ -175,30 +175,35 @@ public class DemoActivity extends Activity {
     }
 
     private AAnimationSet run3WithFactory() {
-        ArrayList<View> squares = new ArrayList<View>();
-        squares.add(square1);
-        squares.add(square2);
         FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
         List<AAnimationFactory> fadeTrans = new ArrayList<AAnimationFactory>();
         fadeTrans.add(fadeIn);
         fadeTrans.add(translate);
-        LinearAAnimationSetFactory linAnim1 = new LinearAAnimationSetFactory(fadeTrans);
+        LinearAAnimationSetFactory linAnimFadeTrans = new LinearAAnimationSetFactory(fadeTrans);
 
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
         ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 0);
         List<AAnimationFactory> rotScale = new ArrayList<AAnimationFactory>();
         rotScale.add(rotate);
         rotScale.add(scale);
-        LinearAAnimationSetFactory linAnim2 = new LinearAAnimationSetFactory(fadeTrans);
+        LinearAAnimationSetFactory linAnimRotScale = new LinearAAnimationSetFactory(fadeTrans);
 
-        List<AAnimationFactory> anims = new ArrayList<AAnimationFactory>();
-        anims.add(linAnim1);
-        anims.add(linAnim2);
-        ParallelAAnimationSetFactory par = new ParallelAAnimationSetFactory(anims);
-        AAnimationSet animSet1 = par.apply(square1);
+        List<AAnimationFactory> fadeRotScaleTrans = new ArrayList<AAnimationFactory>();
+        fadeRotScaleTrans.add(linAnimRotScale); // doesn't have fade trans yet
+        ParallelAAnimationSetFactory par2 = new ParallelAAnimationSetFactory(fadeRotScaleTrans);
+        AAnimationSet animSet2 = par2.apply(square2);
 
-        return null;
+        fadeRotScaleTrans.add(linAnimFadeTrans);
+        ParallelAAnimationSetFactory par1 = new ParallelAAnimationSetFactory(fadeRotScaleTrans);
+        AAnimationSet animSet1 = par1.apply(square1);
+
+        ArrayList<AAnimationSet> totalAnimSets = new ArrayList<AAnimationSet>();
+        totalAnimSets.add(animSet1);
+        totalAnimSets.add(animSet2);
+        LinearAAnimationSet fin = new LinearAAnimationSet(totalAnimSets);
+
+        return fin;
     }
 
 }
