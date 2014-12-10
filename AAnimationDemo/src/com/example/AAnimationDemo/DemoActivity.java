@@ -13,6 +13,7 @@ import java.util.List;
 
 public class DemoActivity extends Activity {
     private final static int TIME = 500;
+    private final static int WAIT = 100;
     int count = 0;
     View square1, square2, square3;
     Button button1, button2, button3;
@@ -123,10 +124,10 @@ public class DemoActivity extends Activity {
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
-        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.5f, TIME, 100);
+        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,WAIT);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, WAIT);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, WAIT);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.8f, TIME, WAIT);
 
         List<AAnimationFactory> animations = new ArrayList<AAnimationFactory>();
         animations.add(fade);
@@ -146,7 +147,7 @@ public class DemoActivity extends Activity {
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,WAIT);
         FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1, 0, TIME, 0);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
@@ -178,7 +179,7 @@ public class DemoActivity extends Activity {
         ArrayList<View> squares = new ArrayList<View>();
         squares.add(square1);
         squares.add(square2);
-        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,WAIT);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
         List<AAnimationFactory> fadeTrans = new ArrayList<AAnimationFactory>();
         fadeTrans.add(fadeIn);
