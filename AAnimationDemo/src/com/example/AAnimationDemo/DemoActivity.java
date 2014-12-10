@@ -18,7 +18,7 @@ public class DemoActivity extends Activity {
     int count = 0;
     View square1, square2, square3;
     Button button1, button2, button3;
-    AAnimationSet set1, set2, set3;
+    AAnimationSet animationSet;
     Map<Integer, AAnimationState> viewsMap;
     boolean coordsSaved;
     /**
@@ -54,127 +54,62 @@ public class DemoActivity extends Activity {
         b.setText("Cancel animation ex. "+example);
     }
 
-    public void onClick(View v) {
+    public void onClick(final View v) {
         saveInitialValues();
         int viewId = v.getId();
-        switch(viewId) {
-            case R.id.button1:
-                handleButton1();
-                break;
-            case R.id.button2:
-                handleButton2();
-                break;
-            case R.id.button3:
-                handleButton3();
-                break;
-            case R.id.resetButton:
-                handleResetButton();
-                break;
-            default:
-                Log.d("onClick", "Reached default case in onClick, view ID was: " + viewId);
-        }
-    }
+        int exampleNumber = 0;
 
-    /**
-     * Response handler to react to taps on our button which toggles animations.
-     */
-    public void handleButton1() {
-        Log.d("handleButton1", "Handling tap on button 1");
-        if (set1 != null && set1.isRunning()) {
-            set1.cancel();
+        if (animationSet != null && animationSet.isRunning()) {
+            animationSet.cancel();
         } else {
-            set1 = run1WithFactory();
-            set1.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    changeToCancelAnimationButton(button1, 1);
-                }
+            switch (viewId) {
+                case R.id.button1:
+                    animationSet = run1WithFactory();
+                    exampleNumber = 1;
+                    break;
+                case R.id.button2:
+                    animationSet = run2WithFactory();
+                    exampleNumber = 2;
+                    break;
+                case R.id.button3:
+                    animationSet = run3WithFactory();
+                    exampleNumber = 3;    
+                    break;
+                case R.id.resetButton:
+                    handleResetButton();
+                    break;
+                default:
+                    Log.d("onClick", "Reached default case in onClick, view ID was: " + viewId);    
+            }
 
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    changeToStartAnimationButton(button1, 1);
-                }
+            final int example = exampleNumber;
 
-                @Override
-                public void onAnimationCancel(Animator animation) {
-                    changeToStartAnimationButton(button1, 1);
-                }
+            if (animationSet != null) {
+                animationSet.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        changeToCancelAnimationButton((Button)v, example);
+                    }
 
-                @Override
-                public void onAnimationRepeat(Animator animation) {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        changeToStartAnimationButton((Button)v, example);
+                        animationSet = null;
+                    }
 
-                }
-            });
-            set1.run();
-        }
-    }
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        changeToStartAnimationButton((Button)v, example);
+                        animationSet = null;
+                    }
 
-    /**
-     * Response handler to react to taps on our button which toggles animations.
-     */
-    public void handleButton2() {
-        Log.d("handleButton2", "Handling tap on button 2");
-        if (set2 != null && set2.isRunning()) {
-            set2.cancel();
-        } else {
-            set2 = run2WithFactory();
-            set2.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    changeToCancelAnimationButton(button2, 1);
-                }
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
 
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    changeToStartAnimationButton(button2, 1);
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animation) {
-                    changeToStartAnimationButton(button2, 1);
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-
-                }
-            });
-            set2.run();
-        }
-
-    }
-
-    /**
-     * Response handler to react to taps on our button which toggles animations.
-     */
-    public void handleButton3() {
-        Log.d("handleButton3", "Handling tap on button 3");
-        if (set3 != null && set3.isRunning()) {
-            set3.cancel();
-        } else {
-            set3 = run3WithFactory();
-            set3.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    changeToCancelAnimationButton(button3, 1);
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    changeToStartAnimationButton(button3, 1);
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animation) {
-                    changeToStartAnimationButton(button3, 1);
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-
-                }
-            });
-            set3.run();
+                    }
+                });
+                animationSet.run();
+            }
         }
     }
 
@@ -268,26 +203,4 @@ public class DemoActivity extends Activity {
         return null;
     }
 
-//    private void runBasic() {
-//        ArrayList<View> squares = new ArrayList<View>();
-//        squares.add(square1);
-//        squares.add(square2);
-//        squares.add(square3);
-//
-//        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
-//        AAnimationSet fadeAnimations = fade.apply(squares);
-//        fadeAnimations.run();
-//
-//        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
-//        AAnimationSet translateAnimations = translate.apply(squares);
-//        translateAnimations.run();
-//
-//        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
-//        AAnimationSet rotateAnimations = rotate.apply(squares);
-//        rotateAnimations.run();
-//
-//        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
-//        AAnimationSet scaleAnimations = scale.apply(squares);
-//        scaleAnimations.run();
-//    }
 }
