@@ -6,11 +6,11 @@ import android.view.View;
  * Holds the values for initial animation state.
  */
 public class AAnimationState {
-    public View view;
-    public float x, y;
-    public float rotation;
-    public float alpha;
-    public float scale;
+    public final View view;
+    public final float x, y;
+    public final float rotation;
+    public final float alpha;
+    public final float scale;
 
     public AAnimationState(View view) {
         this.view = view;

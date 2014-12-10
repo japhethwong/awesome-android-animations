@@ -9,9 +9,7 @@ import android.widget.Button;
 import com.cs164.AAnimation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class DemoActivity extends Activity {
     private final static int TIME = 500;
@@ -19,14 +17,16 @@ public class DemoActivity extends Activity {
     View square1, square2, square3;
     Button button1, button2, button3;
     AAnimationSet animationSet;
-    Map<Integer, AAnimationState> viewsMap;
-    boolean coordsSaved;
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setScreen();
+    }
+
+    private void setScreen() {
         setContentView(R.layout.main);
         square1 = findViewById(R.id.square1);
         square2 = findViewById(R.id.square2);
@@ -35,16 +35,13 @@ public class DemoActivity extends Activity {
         button1 = (Button)findViewById(R.id.button1);
         button2 = (Button)findViewById(R.id.button2);
         button3 = (Button)findViewById(R.id.button3);
-
-        viewsMap = new HashMap<Integer, AAnimationState>();
-        coordsSaved = false;
     }
 
     /**
      * changeToStartAnimationButton() is a helper function which toggles the state of our button to start animation.
      */
     private void changeToStartAnimationButton(Button b, int example) {
-        b.setText("Start animation ex. "+example);
+        b.setText("Start animation ex. " + example);
     }
 
     /**
@@ -55,10 +52,13 @@ public class DemoActivity extends Activity {
     }
 
     public void onClick(final View v) {
-        saveInitialValues();
         int viewId = v.getId();
         int exampleNumber = 0;
 
+        if (viewId == R.id.resetButton) {
+            handleResetButton();
+            return;
+        }
         if (animationSet != null && animationSet.isRunning()) {
             animationSet.cancel();
         } else {
@@ -74,9 +74,6 @@ public class DemoActivity extends Activity {
                 case R.id.button3:
                     animationSet = run3WithFactory();
                     exampleNumber = 3;    
-                    break;
-                case R.id.resetButton:
-                    handleResetButton();
                     break;
                 default:
                     Log.d("onClick", "Reached default case in onClick, view ID was: " + viewId);    
@@ -114,31 +111,12 @@ public class DemoActivity extends Activity {
     }
 
     public void handleResetButton() {
-        Log.d("handleResetButton", "Tapped RESET button.");
-        for (Integer key : viewsMap.keySet()) {
-            Log.d("handleResetButton", "Setting properties for key: " + key);
-            View currentView = findViewById(key);
-            AAnimationState state = viewsMap.get(key);
-            currentView.setX(state.x);
-            currentView.setY(state.y);
-            currentView.setRotation(state.rotation);
-            currentView.setAlpha(state.alpha);
-            currentView.setScaleX(state.scale);
-            currentView.setScaleY(state.scale);
-            currentView.setVisibility(View.INVISIBLE);
-        }
-    }
+//        Log.d("handleResetButton", "Tapped RESET button.");
 
-    /**
-     * This is a hack for reset.  There has to be a better way to do this.
-     **/
-    private void saveInitialValues() {
-        if (!coordsSaved) {
-            viewsMap.put(R.id.square1, new AAnimationState(square1));
-            viewsMap.put(R.id.square2, new AAnimationState(square2));
-            viewsMap.put(R.id.square3, new AAnimationState(square3));
-            coordsSaved = true;
+        if (animationSet != null && animationSet.isRunning()) {
+            animationSet.cancel();
         }
+        setScreen();
     }
 
     private AAnimationSet run1WithFactory() {
