@@ -111,8 +111,6 @@ public class DemoActivity extends Activity {
     }
 
     public void handleResetButton() {
-//        Log.d("handleResetButton", "Tapped RESET button.");
-
         if (animationSet != null && animationSet.isRunning()) {
             animationSet.cancel();
         }
