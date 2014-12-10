@@ -125,7 +125,7 @@ public class DemoActivity extends Activity {
             currentView.setAlpha(state.alpha);
             currentView.setScaleX(state.scale);
             currentView.setScaleY(state.scale);
-            currentView.setVisibility(View.INVISIBLE);
+            currentView.setVisibility(state.alpha <= 0.001f ? View.INVISIBLE : View.VISIBLE);
         }
     }
 
