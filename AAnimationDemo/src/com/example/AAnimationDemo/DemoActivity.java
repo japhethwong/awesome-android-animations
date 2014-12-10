@@ -186,31 +186,29 @@ public class DemoActivity extends Activity {
         fadeTrans.add(fadeIn);
         fadeTrans.add(translate);
         LinearAAnimationSetFactory linAnimFadeTrans = new LinearAAnimationSetFactory(fadeTrans);
+        AAnimationSet animSet2 = linAnimFadeTrans.apply(square2);
 
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
         ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 0);
         List<AAnimationFactory> rotScale = new ArrayList<AAnimationFactory>();
         rotScale.add(rotate);
         rotScale.add(scale);
-        LinearAAnimationSetFactory linAnimRotScale = new LinearAAnimationSetFactory(fadeTrans);
+        LinearAAnimationSetFactory linAnimRotScale = new LinearAAnimationSetFactory(rotScale);
 
         List<AAnimationFactory> fadeRotScaleTrans = new ArrayList<AAnimationFactory>();
         fadeRotScaleTrans.add(linAnimRotScale); // doesn't have fade trans yet
-        ParallelAAnimationSetFactory par2 = new ParallelAAnimationSetFactory(fadeRotScaleTrans);
-        AAnimationSet animSet2 = par2.apply(square2);
-
         fadeRotScaleTrans.add(linAnimFadeTrans);
         ParallelAAnimationSetFactory par1 = new ParallelAAnimationSetFactory(fadeRotScaleTrans);
         AAnimationSet animSet1 = par1.apply(square1);
 
-        return animSet1;
-//        ArrayList<AAnimationSet> totalAnimSets = new ArrayList<AAnimationSet>();
-//        totalAnimSets.add(animSet1);
-//        totalAnimSets.add(animSet2);
-//        LinearAAnimationSet fin = new LinearAAnimationSet(totalAnimSets);
-//
-//        return fin;
+        ArrayList<AAnimationSet> totalAnimSets = new ArrayList<AAnimationSet>();
+        totalAnimSets.add(animSet1);
+        totalAnimSets.add(animSet2);
+        LinearAAnimationSet fin = new LinearAAnimationSet(totalAnimSets);
+
+        return fin;
     }
+
 
     /**
      * runEasyDemo() runs the easy demo in our design document.
