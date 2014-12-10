@@ -9,24 +9,25 @@ import android.widget.Button;
 import com.cs164.AAnimation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class DemoActivity extends Activity {
     private final static int TIME = 500;
+    private final static int WAIT = 100;
     int count = 0;
     View square1, square2, square3;
     Button button1, button2, button3;
     AAnimationSet animationSet;
-    Map<Integer, AAnimationState> viewsMap;
-    boolean coordsSaved;
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setScreen();
+    }
+
+    private void setScreen() {
         setContentView(R.layout.main);
         square1 = findViewById(R.id.square1);
         square2 = findViewById(R.id.square2);
@@ -35,9 +36,6 @@ public class DemoActivity extends Activity {
         button1 = (Button)findViewById(R.id.button1);
         button2 = (Button)findViewById(R.id.button2);
         button3 = (Button)findViewById(R.id.button3);
-
-        viewsMap = new HashMap<Integer, AAnimationState>();
-        coordsSaved = false;
     }
 
     /**
@@ -55,10 +53,13 @@ public class DemoActivity extends Activity {
     }
 
     public void onClick(final View v) {
-        saveInitialValues();
         int viewId = v.getId();
         String example = "";
 
+        if (viewId == R.id.resetButton) {
+            handleResetButton();
+            return;
+        }
         if (animationSet != null && animationSet.isRunning()) {
             animationSet.cancel();
         } else {
@@ -78,9 +79,6 @@ public class DemoActivity extends Activity {
                 case R.id.easyButton:
                     animationSet = runEasyDemo();
                     example = "EASY";
-                case R.id.resetButton:
-                    handleResetButton();
-                    break;
                 default:
                     Log.d("onClick", "Reached default case in onClick, view ID was: " + viewId);    
             }
@@ -117,31 +115,10 @@ public class DemoActivity extends Activity {
     }
 
     public void handleResetButton() {
-        Log.d("handleResetButton", "Tapped RESET button.");
-        for (Integer key : viewsMap.keySet()) {
-            Log.d("handleResetButton", "Setting properties for key: " + key);
-            View currentView = findViewById(key);
-            AAnimationState state = viewsMap.get(key);
-            currentView.setX(state.x);
-            currentView.setY(state.y);
-            currentView.setRotation(state.rotation);
-            currentView.setAlpha(state.alpha);
-            currentView.setScaleX(state.scale);
-            currentView.setScaleY(state.scale);
-            currentView.setVisibility(View.INVISIBLE);
+        if (animationSet != null && animationSet.isRunning()) {
+            animationSet.cancel();
         }
-    }
-
-    /**
-     * This is a hack for reset.  There has to be a better way to do this.
-     **/
-    private void saveInitialValues() {
-        if (!coordsSaved) {
-            viewsMap.put(R.id.square1, new AAnimationState(square1));
-            viewsMap.put(R.id.square2, new AAnimationState(square2));
-            viewsMap.put(R.id.square3, new AAnimationState(square3));
-            coordsSaved = true;
-        }
+        setScreen();
     }
 
     private AAnimationSet run1WithFactory() {
@@ -150,10 +127,10 @@ public class DemoActivity extends Activity {
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
-        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
+        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,WAIT);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, WAIT);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, WAIT);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.8f, TIME, WAIT);
 
         List<AAnimationFactory> animations = new ArrayList<AAnimationFactory>();
         animations.add(fade);
@@ -173,7 +150,7 @@ public class DemoActivity extends Activity {
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,WAIT);
         FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1, 0, TIME, 0);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
@@ -202,7 +179,29 @@ public class DemoActivity extends Activity {
     }
 
     private AAnimationSet run3WithFactory() {
-        // TODO
+        ArrayList<View> squares = new ArrayList<View>();
+        squares.add(square1);
+        squares.add(square2);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,WAIT);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
+        List<AAnimationFactory> fadeTrans = new ArrayList<AAnimationFactory>();
+        fadeTrans.add(fadeIn);
+        fadeTrans.add(translate);
+        LinearAAnimationSetFactory linAnim1 = new LinearAAnimationSetFactory(fadeTrans);
+
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 0);
+        List<AAnimationFactory> rotScale = new ArrayList<AAnimationFactory>();
+        rotScale.add(rotate);
+        rotScale.add(scale);
+        LinearAAnimationSetFactory linAnim2 = new LinearAAnimationSetFactory(fadeTrans);
+
+        List<AAnimationFactory> anims = new ArrayList<AAnimationFactory>();
+        anims.add(linAnim1);
+        anims.add(linAnim2);
+        ParallelAAnimationSetFactory par = new ParallelAAnimationSetFactory(anims);
+        AAnimationSet animSet1 = par.apply(square1);
+
         return null;
     }
 

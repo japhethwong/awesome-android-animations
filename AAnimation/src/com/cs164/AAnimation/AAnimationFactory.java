@@ -2,7 +2,6 @@ package com.cs164.AAnimation;
 
 import android.view.View;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,5 +14,6 @@ public interface AAnimationFactory {
      * @return an AAnimationSet which can be run or canceled
      */
     public AAnimationSet apply(List<View> objects);
+    public AAnimationSet apply(View object);
 }
 

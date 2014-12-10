@@ -22,6 +22,7 @@ public class ScaleAAnimationFactory extends BasicAAnimationFactory {
     public ScaleAAnimationFactory(float scale) {
         this(scale, 200, 0);
     }
+
     @Override
     public AAnimationSet apply(List<View> objects) {
         ArrayList<Animator> animators = new ArrayList<Animator>();
@@ -44,6 +45,6 @@ public class ScaleAAnimationFactory extends BasicAAnimationFactory {
             scaleAnimation.setStartDelay(wait);
             animators.add(scaleAnimation);
         }
-        return new AAnimationSet(animators, states);
+        return new ParallelAAnimationSet(animators, states);
     }
 }

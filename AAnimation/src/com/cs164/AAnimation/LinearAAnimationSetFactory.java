@@ -47,6 +47,6 @@ public class LinearAAnimationSetFactory extends AAnimationSetFactory {
         godzillaSet.playSequentially(animators);
         List<Animator> toReturn = new ArrayList<Animator>();
         toReturn.add(godzillaSet);
-        return new AAnimationSet(toReturn, states);
+        return new LinearAAnimationSet(toReturn, states);
     }
 }
