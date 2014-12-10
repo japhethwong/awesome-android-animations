@@ -42,14 +42,14 @@ public class DemoActivity extends Activity {
      * changeToStartAnimationButton() is a helper function which toggles the state of our button to start animation.
      */
     private void changeToStartAnimationButton(Button b, String example) {
-        b.setText("Start animation ex. "+example);
+        b.setText("Start " + example + " Animation Demo");
     }
 
     /**
      * changeToCancelAnimationButton() is a helper function which toggles the state of our button to reset animation.
      */
     private void changeToCancelAnimationButton(Button b, String example) {
-        b.setText("Cancel animation ex. "+example);
+        b.setText("Cancel " + example + " Animation Demo");
     }
 
     public void onClick(final View v) {
@@ -66,15 +66,15 @@ public class DemoActivity extends Activity {
             switch (viewId) {
                 case R.id.button1:
                     animationSet = run1WithFactory();
-                    example = ""+1;
+                    example = "EXAMPLE 1";
                     break;
                 case R.id.button2:
                     animationSet = run2WithFactory();
-                    example = ""+2;
+                    example = "EXAMPLE 2";
                     break;
                 case R.id.button3:
                     animationSet = run3WithFactory();
-                    example = ""+3;
+                    example = "EXAMPLE 3";
                     break;
                 case R.id.easyButton:
                     animationSet = runEasyDemo();
