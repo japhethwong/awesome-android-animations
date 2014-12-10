@@ -4,8 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +92,6 @@ public class TranslateAAnimationFactory extends BasicAAnimationFactory {
             translateXY.playTogether(translateX, translateY);
             animators.add(translateXY);
         }
-        return new AAnimationSet(animators, states);
+        return new ParallelAAnimationSet(animators, states);
     }
 }

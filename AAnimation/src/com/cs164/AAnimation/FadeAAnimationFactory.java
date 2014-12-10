@@ -2,7 +2,6 @@ package com.cs164.AAnimation;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -59,6 +58,6 @@ public class FadeAAnimationFactory extends BasicAAnimationFactory {
             });
             animators.add(fade);
         }
-        return new AAnimationSet(animators, states);
+        return new ParallelAAnimationSet(animators, states);
     }
 }
