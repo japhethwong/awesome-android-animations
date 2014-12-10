@@ -203,12 +203,13 @@ public class DemoActivity extends Activity {
         ParallelAAnimationSetFactory par1 = new ParallelAAnimationSetFactory(fadeRotScaleTrans);
         AAnimationSet animSet1 = par1.apply(square1);
 
-        ArrayList<AAnimationSet> totalAnimSets = new ArrayList<AAnimationSet>();
-        totalAnimSets.add(animSet1);
-        totalAnimSets.add(animSet2);
-        LinearAAnimationSet fin = new LinearAAnimationSet(totalAnimSets);
-
-        return fin;
+        return animSet1;
+//        ArrayList<AAnimationSet> totalAnimSets = new ArrayList<AAnimationSet>();
+//        totalAnimSets.add(animSet1);
+//        totalAnimSets.add(animSet2);
+//        LinearAAnimationSet fin = new LinearAAnimationSet(totalAnimSets);
+//
+//        return fin;
     }
 
     /**
