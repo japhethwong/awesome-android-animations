@@ -43,6 +43,6 @@ public class ParallelAAnimationSetFactory extends AAnimationSetFactory {
         godzillaSet.playTogether(animators);
         List<Animator> toReturn = new ArrayList<Animator>();
         toReturn.add(godzillaSet);
-        return new AAnimationSet(toReturn, states);
+        return new ParallelAAnimationSet(toReturn, states);
     }
 }
