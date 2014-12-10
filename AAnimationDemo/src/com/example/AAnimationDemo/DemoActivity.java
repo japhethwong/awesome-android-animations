@@ -83,8 +83,7 @@ public class DemoActivity extends Activity {
         if (set1 != null && set1.isRunning()) {
             set1.cancel();
         } else {
-            //      runBasic();
-            set1 = runWithFactory();
+            set1 = run1WithFactory();
             set1.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
@@ -115,38 +114,34 @@ public class DemoActivity extends Activity {
      */
     public void handleButton2() {
         Log.d("handleButton2", "Handling tap on button 2");
-        // TODO: Replace with the actual demo code.
-        ArrayList<View> squares = new ArrayList<View>();
-        squares.add(square1);
-        squares.add(square2);
-        squares.add(square3);
+        if (set2 != null && set2.isRunning()) {
+            set2.cancel();
+        } else {
+            set2 = run2WithFactory();
+            set2.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    changeToCancelAnimationButton(button2, 1);
+                }
 
-        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
-        FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1, 0, TIME, 0);
-        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 0);
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    changeToStartAnimationButton(button2, 1);
+                }
 
-        List<AAnimationFactory> translateRotate = new ArrayList<AAnimationFactory>();
-        translateRotate.add(translate);
-        translateRotate.add(rotate);
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    changeToStartAnimationButton(button2, 1);
+                }
 
-        LinearAAnimationSetFactory linAnim12 = new LinearAAnimationSetFactory(translateRotate);
+                @Override
+                public void onAnimationRepeat(Animator animation) {
 
-        List<AAnimationFactory> fadeScale = new ArrayList<AAnimationFactory>();
-        fadeScale.add(fadeIn);
-        fadeScale.add(scale);
-        fadeScale.add(fadeOut);
+                }
+            });
+            set2.run();
+        }
 
-        LinearAAnimationSetFactory linAnim3 = new LinearAAnimationSetFactory(fadeScale);
-
-        List<AAnimationFactory> anims = new ArrayList<AAnimationFactory>();
-        anims.add(linAnim12);
-        anims.add(linAnim3);
-
-        ParallelAAnimationSetFactory par = new ParallelAAnimationSetFactory(anims);
-        AAnimationSet animSet = par.apply(squares);
-        animSet.run();
     }
 
     /**
@@ -154,7 +149,33 @@ public class DemoActivity extends Activity {
      */
     public void handleButton3() {
         Log.d("handleButton3", "Handling tap on button 3");
-        // TODO
+        if (set3 != null && set3.isRunning()) {
+            set3.cancel();
+        } else {
+            set3 = run3WithFactory();
+            set3.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    changeToCancelAnimationButton(button3, 1);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    changeToStartAnimationButton(button3, 1);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    changeToStartAnimationButton(button3, 1);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            });
+            set3.run();
+        }
     }
 
     public void handleResetButton() {
@@ -185,7 +206,7 @@ public class DemoActivity extends Activity {
         }
     }
 
-    private AAnimationSet runWithFactory() {
+    private AAnimationSet run1WithFactory() {
         ArrayList<View> squares = new ArrayList<View>();
         squares.add(square1);
         squares.add(square2);
@@ -205,29 +226,68 @@ public class DemoActivity extends Activity {
         LinearAAnimationSetFactory linearAnimation = new LinearAAnimationSetFactory(animations);
         AAnimationSet set = linearAnimation.apply(squares);
         return set;
-//        set.run();
     }
 
-    private void runBasic() {
+    private AAnimationSet run2WithFactory() {
+        // TODO replace with ex. 2 from design doc
         ArrayList<View> squares = new ArrayList<View>();
         squares.add(square1);
         squares.add(square2);
         squares.add(square3);
 
-        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
-        AAnimationSet fadeAnimations = fade.apply(squares);
-        fadeAnimations.run();
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
+        FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1, 0, TIME, 0);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 0);
 
-        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
-        AAnimationSet translateAnimations = translate.apply(squares);
-        translateAnimations.run();
+        List<AAnimationFactory> translateRotate = new ArrayList<AAnimationFactory>();
+        translateRotate.add(translate);
+        translateRotate.add(rotate);
 
-        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
-        AAnimationSet rotateAnimations = rotate.apply(squares);
-        rotateAnimations.run();
+        LinearAAnimationSetFactory linAnim12 = new LinearAAnimationSetFactory(translateRotate);
 
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
-        AAnimationSet scaleAnimations = scale.apply(squares);
-        scaleAnimations.run();
+        List<AAnimationFactory> fadeScale = new ArrayList<AAnimationFactory>();
+        fadeScale.add(fadeIn);
+        fadeScale.add(scale);
+        fadeScale.add(fadeOut);
+
+        LinearAAnimationSetFactory linAnim3 = new LinearAAnimationSetFactory(fadeScale);
+
+        List<AAnimationFactory> anims = new ArrayList<AAnimationFactory>();
+        anims.add(linAnim12);
+        anims.add(linAnim3);
+
+        ParallelAAnimationSetFactory par = new ParallelAAnimationSetFactory(anims);
+        AAnimationSet animSet = par.apply(squares);
+        return animSet;
     }
+
+    private AAnimationSet run3WithFactory() {
+        // TODO
+        return null;
+    }
+
+//    private void runBasic() {
+//        ArrayList<View> squares = new ArrayList<View>();
+//        squares.add(square1);
+//        squares.add(square2);
+//        squares.add(square3);
+//
+//        FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
+//        AAnimationSet fadeAnimations = fade.apply(squares);
+//        fadeAnimations.run();
+//
+//        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
+//        AAnimationSet translateAnimations = translate.apply(squares);
+//        translateAnimations.run();
+//
+//        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
+//        AAnimationSet rotateAnimations = rotate.apply(squares);
+//        rotateAnimations.run();
+//
+//        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
+//        AAnimationSet scaleAnimations = scale.apply(squares);
+//        scaleAnimations.run();
+//    }
 }
