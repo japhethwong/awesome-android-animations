@@ -2,6 +2,7 @@ package com.cs164.AAnimation;
 
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,8 +25,9 @@ public class AAnimationSetFactory implements AAnimationFactory {
 
     @Override
     public AAnimationSet apply(View object) {
-        assert false : "Subclasses of AAnimationSetFactory are responsible for implementing an apply() method.";
-        return null;
+        ArrayList<View> objects = new ArrayList<View>();
+        objects.add(object);
+        return this.apply(objects);
     }
     /**
      * setCancel allows the user to toggle the feature for enabling/disabling our cancel animation sequence.
