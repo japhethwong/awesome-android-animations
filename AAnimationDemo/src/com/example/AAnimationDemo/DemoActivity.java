@@ -9,7 +9,9 @@ import android.widget.Button;
 import com.cs164.AAnimation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DemoActivity extends Activity {
     private final static int TIME = 500;
@@ -17,6 +19,8 @@ public class DemoActivity extends Activity {
     View square1, square2, square3;
     Button button1, button2, button3;
     AAnimationSet set1, set2, set3;
+    Map<Integer, AAnimationState> viewsMap;
+    boolean coordsSaved;
     /**
      * Called when the activity is first created.
      */
@@ -27,10 +31,13 @@ public class DemoActivity extends Activity {
         square1 = findViewById(R.id.square1);
         square2 = findViewById(R.id.square2);
         square3 = findViewById(R.id.square3);
+
         button1 = (Button)findViewById(R.id.button1);
         button2 = (Button)findViewById(R.id.button2);
         button3 = (Button)findViewById(R.id.button3);
 
+        viewsMap = new HashMap<Integer, AAnimationState>();
+        coordsSaved = false;
     }
 
     /**
@@ -52,8 +59,9 @@ public class DemoActivity extends Activity {
      * @param v is the view which registered the tap
      */
     public void onClickEx1(View v) {
-        Log.d("HEY", "got clicked "+count);
+        Log.d("HEY", "got clicked " + count);
         count++;
+        saveInitialValues();
         if(set1 != null && set1.isRunning()) {
             set1.cancel();
         } else {
@@ -113,6 +121,7 @@ public class DemoActivity extends Activity {
      */
     public void onClickEx2(View v) {
         // TODO: Replace with the actual demo code.
+        saveInitialValues();
         ArrayList<View> squares = new ArrayList<View>();
         squares.add(square1);
         squares.add(square2);
@@ -153,14 +162,35 @@ public class DemoActivity extends Activity {
     public void onClickEx3(View v) {
         // TODO
         Log.d("Started", "ex. 3");
+        saveInitialValues();
     }
 
     public void onClickReset(View v) {
         Log.d("Reset", "Tapped RESET button.");
-        square1 = findViewById(R.id.square1);
-        square2 = findViewById(R.id.square2);
-        square3 = findViewById(R.id.square3);
+        for (Integer key : viewsMap.keySet()) {
+            Log.d("RESET", "Setting properties for key: " + key);
+            View currentView = findViewById(key);
+            AAnimationState state = viewsMap.get(key);
+            currentView.setX(state.x);
+            currentView.setY(state.y);
+            currentView.setRotation(state.rotation);
+            currentView.setAlpha(state.alpha);
+            currentView.setScaleX(state.scale);
+            currentView.setScaleY(state.scale);
+            currentView.setVisibility(View.INVISIBLE);
+        }
+    }
 
+    /**
+     * This is a hack for reset.  There has to be a better way to do this.
+     **/
+    private void saveInitialValues() {
+        if (!coordsSaved) {
+            viewsMap.put(R.id.square1, new AAnimationState(square1));
+            viewsMap.put(R.id.square2, new AAnimationState(square2));
+            viewsMap.put(R.id.square3, new AAnimationState(square3));
+            coordsSaved = true;
+        }
     }
 
     private AAnimationSet runWithFactory() {
