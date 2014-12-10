@@ -36,7 +36,7 @@
 
     <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width = "match_parent"
             android:layout_height="wrap_content"
             android:text="Start animation ex. 3"
             android:onClick="onClick"
@@ -45,7 +45,7 @@
             android:layout_alignStart="@+id/button2"/>
     <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width = "match_parent"
             android:layout_height="wrap_content"
             android:text="Start animation ex. 2"
             android:onClick="onClick"
@@ -54,7 +54,7 @@
             android:layout_alignParentEnd="true"/>
     <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width = "match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:text="Start animation ex. 1"
@@ -65,7 +65,7 @@
 
     <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width = "wrap_content"
+            android:layout_width = "match_parent"
             android:layout_height = "wrap_content"
             android:layout_gravity = "bottom"
             android:text="Reset"
