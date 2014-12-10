@@ -126,7 +126,7 @@ public class DemoActivity extends Activity {
         FadeAAnimationFactory fade = new FadeAAnimationFactory(0,1,TIME,100);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 100);
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 100);
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 100);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.5f, TIME, 100);
 
         List<AAnimationFactory> animations = new ArrayList<AAnimationFactory>();
         animations.add(fade);
@@ -175,7 +175,29 @@ public class DemoActivity extends Activity {
     }
 
     private AAnimationSet run3WithFactory() {
-        // TODO
+        ArrayList<View> squares = new ArrayList<View>();
+        squares.add(square1);
+        squares.add(square2);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,100);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
+        List<AAnimationFactory> fadeTrans = new ArrayList<AAnimationFactory>();
+        fadeTrans.add(fadeIn);
+        fadeTrans.add(translate);
+        LinearAAnimationSetFactory linAnim1 = new LinearAAnimationSetFactory(fadeTrans);
+
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 0);
+        List<AAnimationFactory> rotScale = new ArrayList<AAnimationFactory>();
+        rotScale.add(rotate);
+        rotScale.add(scale);
+        LinearAAnimationSetFactory linAnim2 = new LinearAAnimationSetFactory(fadeTrans);
+
+        List<AAnimationFactory> anims = new ArrayList<AAnimationFactory>();
+        anims.add(linAnim1);
+        anims.add(linAnim2);
+        ParallelAAnimationSetFactory par = new ParallelAAnimationSetFactory(anims);
+        AAnimationSet animSet1 = par.apply(square1);
+
         return null;
     }
 

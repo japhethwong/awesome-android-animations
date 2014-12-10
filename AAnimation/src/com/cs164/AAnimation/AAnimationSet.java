@@ -12,18 +12,16 @@ import java.util.List;
 /**
  * Created by amytang on 12/8/14.
  */
-public class AAnimationSet {
-    private List<Animator> animators;
-    private List<AAnimationState> states;
-    private AnimatorSet godzillaSet;
-    private boolean isRunning;
-
+public abstract class AAnimationSet {
+    protected List<Animator> animators;
+    protected List<AAnimationState> states;
+    protected AnimatorSet godzillaSet;
+    protected boolean isRunning;
 
     public AAnimationSet(List<Animator> animators, List<AAnimationState> states){
         this.animators = animators;
         this.states = states;
         this.godzillaSet = new AnimatorSet();
-        godzillaSet.playTogether(animators);
         godzillaSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -55,7 +53,6 @@ public class AAnimationSet {
             states.addAll(aAnimationSet.getStates());
         }
         this.godzillaSet = new AnimatorSet();
-        godzillaSet.playTogether(animators);
         godzillaSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {

@@ -28,6 +28,7 @@ public class RotateAAnimationFactory extends BasicAAnimationFactory {
     public RotateAAnimationFactory(int rotation) {
         this(rotation, 200, 0);
     }
+
     @Override
     public AAnimationSet apply(List<View> objects) {
         ArrayList<Animator> animators = new ArrayList<Animator>();
@@ -46,6 +47,6 @@ public class RotateAAnimationFactory extends BasicAAnimationFactory {
             rotate.setStartDelay(wait);
             animators.add(rotate);
         }
-        return new AAnimationSet(animators, states);
+        return new ParallelAAnimationSet(animators, states);
     }
 }

@@ -2,6 +2,7 @@ package com.cs164.AAnimation;
 
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,4 +15,12 @@ public class BasicAAnimationFactory implements AAnimationFactory {
     public AAnimationSet apply(List<View> objects) {
         return null;
     }
+
+    @Override
+    public AAnimationSet apply(View object) {
+        ArrayList<View> objects = new ArrayList<View>();
+        objects.add(object);
+        return this.apply(objects);
+    }
+
 }
