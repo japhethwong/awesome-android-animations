@@ -148,14 +148,14 @@ public abstract class AAnimationSet {
                 fade.addListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
-                        if (Math.abs(currState.alpha - 0.001f) <= 0 && oldState.alpha>= 0) {
+                        if (currState.alpha - 0.001f <= 0 && oldState.alpha>= 0) {
                             view.setVisibility(View.VISIBLE);
                         }
                     }
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        if (Math.abs(oldState.alpha - 0.001f) <= 0) {
+                        if (oldState.alpha - 0.001f <= 0) {
                             view.setVisibility(View.INVISIBLE);
                         }
                     }
