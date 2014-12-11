@@ -16,7 +16,7 @@ public class DemoActivity extends Activity {
     private final static int WAIT = 100;
     int count = 0;
     View square1, square2, square3;
-    Button button1, button2, button3;
+    Button easyButton, mediumButton, hardButton;
     AAnimationSet animationSet;
     /**
      * Called when the activity is first created.
@@ -33,16 +33,16 @@ public class DemoActivity extends Activity {
         square2 = findViewById(R.id.square2);
         square3 = findViewById(R.id.square3);
 
-        button1 = (Button)findViewById(R.id.button1);
-        button2 = (Button)findViewById(R.id.button2);
-        button3 = (Button)findViewById(R.id.button3);
+        easyButton = (Button)findViewById(R.id.easyButton);
+        mediumButton = (Button)findViewById(R.id.mediumButton);
+        hardButton = (Button)findViewById(R.id.hardButton);
     }
 
     /**
      * changeToStartAnimationButton() is a helper function which toggles the state of our button to start animation.
      */
     private void changeToStartAnimationButton(Button b, String example) {
-        b.setText("Start " + example + " Animation Demo");
+        b.setText("Start " + example + " Demo");
     }
 
     /**
@@ -50,7 +50,7 @@ public class DemoActivity extends Activity {
      */
 
     private void changeToCancelAnimationButton(Button b, String example) {
-        b.setText("Cancel " + example + " Animation Demo");
+        b.setText("Cancel " + example + " Demo");
     }
 
     public void onClick(final View v) {
@@ -65,25 +65,17 @@ public class DemoActivity extends Activity {
             animationSet.cancel();
         } else {
             switch (viewId) {
-                case R.id.button1:
-                    animationSet = run1WithFactory();
-                    example = "EXAMPLE 1";
-                    break;
-                case R.id.button2:
-                    animationSet = run2WithFactory();
-                    example = "EXAMPLE 2";
-                    break;
-                case R.id.button3:
-                    animationSet = run3WithFactory();
-                    example = "EXAMPLE 3";
-                    break;
                 case R.id.easyButton:
                     animationSet = runEasyDemo();
-                    example = "EASY";
+                    example = "Easy";
                     break;
                 case R.id.mediumButton:
                     animationSet = runMediumDemo();
-                    example = "MEDIUM";
+                    example = "Medium";
+                    break;
+                case R.id.hardButton:
+                    animationSet = runHardDemo();
+                    example = "Hard";
                     break;
                 default:
                     Log.d("onClick", "Reached default case in onClick, view ID was: " + viewId);    
@@ -184,7 +176,7 @@ public class DemoActivity extends Activity {
         return animSet;
     }
 
-    private AAnimationSet run3WithFactory() {
+    private AAnimationSet runHardDemo() {
         FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*3,WAIT);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
         List<AAnimationFactory> fadeTrans = new ArrayList<AAnimationFactory>();
@@ -194,7 +186,7 @@ public class DemoActivity extends Activity {
         AAnimationSet animSet2 = linAnimFadeTrans.apply(square2);
 
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(2f, TIME, 0);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(.9f, TIME, 0);
         List<AAnimationFactory> rotScale = new ArrayList<AAnimationFactory>();
         rotScale.add(rotate);
         rotScale.add(scale);

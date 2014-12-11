@@ -37,51 +37,28 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width = "match_parent"
         android:layout_height="wrap_content"
-        android:text="Start EASY Animation Demo"
+        android:text="Start Easy Demo"
         android:onClick="onClick"
         android:id="@+id/easyButton"
-        android:layout_above="@+id/mediumButton"
-        android:layout_alignStart="@+id/button2"/>
+        android:layout_above="@+id/mediumButton"/>
 
     <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width = "match_parent"
             android:layout_height="wrap_content"
-            android:text="Start MEDIUM Animation Demo"
+            android:text="Start Medium Demo"
             android:onClick="onClick"
             android:id="@+id/mediumButton"
-            android:layout_above="@+id/resetButton"
-            android:layout_alignStart="@+id/button2"/>
+            android:layout_above="@+id/hardButton"/>
 
     <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width = "match_parent"
             android:layout_height="wrap_content"
-            android:text="Start EXAMPLE 3 Animation Demo"
+            android:text="Start Hard Demo"
             android:onClick="onClick"
-            android:id="@+id/button3"
-            android:layout_above="@+id/easyButton"
-            android:layout_alignStart="@+id/button2"/>
-    <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width = "match_parent"
-            android:layout_height="wrap_content"
-            android:text="Start EXAMPLE 2 Animation Demo"
-            android:onClick="onClick"
-            android:id="@+id/button2"
-            android:layout_above="@+id/button3"
-            android:layout_alignParentEnd="true"/>
-    <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width = "match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="Start EXAMPLE 1 Animation Demo"
-            android:onClick="onClick"
-            android:id="@+id/button1"
-            android:layout_above="@+id/button2"
-            android:layout_alignStart="@+id/button2"/>
-
+            android:id="@+id/hardButton"
+            android:layout_above="@+id/resetButton"/>
     <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width = "match_parent"
@@ -90,7 +67,6 @@
             android:text="Reset"
             android:onClick="onClick"
             android:id="@+id/resetButton"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/button2"/>
+            android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
