@@ -180,7 +180,7 @@ public class DemoActivity extends Activity {
     }
 
     private AAnimationSet run3WithFactory() {
-        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*2,WAIT);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME*3,WAIT);
         TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, 0);
         List<AAnimationFactory> fadeTrans = new ArrayList<AAnimationFactory>();
         fadeTrans.add(fadeIn);
@@ -189,7 +189,7 @@ public class DemoActivity extends Activity {
         AAnimationSet animSet2 = linAnimFadeTrans.apply(square2);
 
         RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, 0);
-        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(0.9f, TIME, 0);
+        ScaleAAnimationFactory scale = new ScaleAAnimationFactory(2f, TIME, 0);
         List<AAnimationFactory> rotScale = new ArrayList<AAnimationFactory>();
         rotScale.add(rotate);
         rotScale.add(scale);
