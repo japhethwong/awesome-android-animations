@@ -12,6 +12,7 @@
             android:layout_height="100px"
             android:layout_margin="10dp"
             android:visibility="invisible"
+            android:alpha="0"
             android:background="@drawable/square1"
             />
     <View
@@ -20,6 +21,7 @@
             android:layout_height="100px"
             android:layout_margin="10dp"
             android:visibility="invisible"
+            android:alpha="0"
             android:background="@drawable/square2"
             android:layout_below="@+id/square1"
             />
@@ -29,6 +31,7 @@
             android:layout_height="100px"
             android:layout_margin="10dp"
             android:visibility="invisible"
+            android:alpha="0"
             android:background="@drawable/square3"
             android:layout_below="@+id/square2"
             />

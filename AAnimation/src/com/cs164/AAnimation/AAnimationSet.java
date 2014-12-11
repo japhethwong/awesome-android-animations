@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -104,6 +105,7 @@ public abstract class AAnimationSet {
      * TODO: As of now, there could be some wonkiness with threads/timing.
      */
     public void cancel() {
+        Log.d("AAnimationSet", "cancel() method called");
         // Cancel all existing animations
         godzillaSet.cancel();
 
@@ -143,6 +145,7 @@ public abstract class AAnimationSet {
             }
 
             // If the alpha changed
+            Log.d("Hey got here, ", "curralpha: "+currState.alpha + " oldState: "+ oldState.alpha);
             if (currState.alpha != oldState.alpha) {
                 ObjectAnimator fade = ObjectAnimator.ofFloat(view, "alpha", currState.alpha, oldState.alpha);
                 fade.addListener(new Animator.AnimatorListener() {
