@@ -80,6 +80,11 @@ public class DemoActivity extends Activity {
                 case R.id.easyButton:
                     animationSet = runEasyDemo();
                     example = "EASY";
+                    break;
+                case R.id.mediumButton:
+                    animationSet = runMediumDemo();
+                    example = "MEDIUM";
+                    break;
                 default:
                     Log.d("onClick", "Reached default case in onClick, view ID was: " + viewId);    
             }
@@ -215,12 +220,9 @@ public class DemoActivity extends Activity {
      * @return an AAnimationSet which corresponds to this animation
      */
     private AAnimationSet runEasyDemo() {
-        List<View> squares = new ArrayList<View>();
-        squares.add(square1);
-
         // Create the component fade animation factories.
-        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0f, 1f, TIME*2, 100);
-        FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1f, 0f, TIME*2, 100);
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0f, 1f, TIME*2, WAIT);
+        FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1f, 0f, TIME*2, WAIT);
 
         // Create the list to contain the sequence of animations.
         List<AAnimationFactory> sequence = new ArrayList<AAnimationFactory>();
@@ -228,7 +230,31 @@ public class DemoActivity extends Activity {
         sequence.add(fadeOut);
 
         // Compose the animations and apply the sequence to the squares.
-        return new LinearAAnimationSetFactory(sequence).apply(squares);
+        return new LinearAAnimationSetFactory(sequence).apply(square1);
     }
 
+    private AAnimationSet runMediumDemo() {
+        // Create list of squares to operate on.
+        ArrayList<View> squares = new ArrayList<View>();
+        squares.add(square1);
+        squares.add(square2);
+        squares.add(square3);
+
+        // Initialize the component animation factories.
+        FadeAAnimationFactory fadeIn = new FadeAAnimationFactory(0,1,TIME,WAIT);
+        TranslateAAnimationFactory translate = new TranslateAAnimationFactory(30, 5, TIME, WAIT);
+        RotateAAnimationFactory rotate = new RotateAAnimationFactory(-700, TIME, WAIT);
+        FadeAAnimationFactory fadeOut = new FadeAAnimationFactory(1, 0, TIME, WAIT);
+
+        // Add the component animation factories into a list.
+        List<AAnimationFactory> animations = new ArrayList<AAnimationFactory>();
+        animations.add(fadeIn);
+        animations.add(translate);
+        animations.add(rotate);
+        animations.add(fadeOut);
+
+        // Compose individual animation factories into a sequence, and apply it to the list of targets.
+        LinearAAnimationSetFactory linearAnimation = new LinearAAnimationSetFactory(animations);
+        return linearAnimation.apply(squares);
+    }
 }

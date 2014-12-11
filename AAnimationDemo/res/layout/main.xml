@@ -40,8 +40,19 @@
         android:text="Start EASY Animation Demo"
         android:onClick="onClick"
         android:id="@+id/easyButton"
-        android:layout_above="@+id/resetButton"
+        android:layout_above="@+id/mediumButton"
         android:layout_alignStart="@+id/button2"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width = "match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start MEDIUM Animation Demo"
+            android:onClick="onClick"
+            android:id="@+id/mediumButton"
+            android:layout_above="@+id/resetButton"
+            android:layout_alignStart="@+id/button2"/>
+
     <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width = "match_parent"
